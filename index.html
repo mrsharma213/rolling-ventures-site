@@ -306,14 +306,14 @@
       <button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('active')">&times;</button>
       <div id="contactForm">
         <h2>Get in touch</h2>
-        <form action="https://formspree.io/hello@rollingventures.com" method="POST" id="rvForm">
+        <form id="rvForm" onsubmit="return submitForm(event)">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="_replyto" required>
+            <input type="email" id="email" name="email" required>
           </div>
           <div class="form-group">
             <label for="message">Message</label>
@@ -342,23 +342,20 @@
       }
     });
 
-    // Form submission
-    document.getElementById('rvForm').addEventListener('submit', function(e) {
+    // Form submission via mailto
+    function submitForm(e) {
       e.preventDefault();
-      var form = this;
-      var data = new FormData(form);
-      fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(function(response) {
-        if (response.ok) {
-          document.getElementById('contactForm').style.display = 'none';
-          document.getElementById('formSuccess').style.display = 'block';
-          form.reset();
-        }
-      });
-    });
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var message = document.getElementById('message').value;
+      var subject = encodeURIComponent('Rolling Ventures — Inbound from ' + name);
+      var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      window.location.href = 'mailto:hello@rollingventures.com?subject=' + subject + '&body=' + body;
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('rvForm').reset();
+      return false;
+    }
   </script>
 </body>
 </html>
