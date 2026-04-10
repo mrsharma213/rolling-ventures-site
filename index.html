@@ -34,33 +34,31 @@
       padding: 15vh 32px 48px;
     }
 
-    /* Wordmark */
-    .wordmark {
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      color: #111;
-      margin-bottom: 32px;
-    }
-
-    /* Tagline = hero headline */
-    .tagline {
-      font-size: 2rem;
+    /* H1 — Rolling Ventures */
+    .h1 {
+      font-size: 2.4rem;
       font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: -0.025em;
-      max-width: 440px;
-      margin-bottom: 14px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
     }
 
-    /* Supporting line */
-    .sub {
+    /* H2 — Tagline */
+    .h2 {
+      font-size: 1.25rem;
+      font-weight: 400;
+      line-height: 1.4;
+      color: #444;
+      margin-bottom: 16px;
+    }
+
+    /* H3 — Supporting copy */
+    .h3 {
       font-size: 0.9rem;
       font-weight: 300;
-      color: #777;
+      color: #888;
       line-height: 1.55;
-      max-width: 340px;
+      max-width: 360px;
       margin-bottom: 44px;
     }
 
@@ -104,16 +102,15 @@
       object-fit: contain;
     }
 
-    /* CTA */
+    /* CTA — H2 sizing */
     .cta {
       font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
+      font-size: 1.25rem;
+      font-weight: 400;
       color: #111;
       text-decoration: none;
-      border-bottom: 1.5px solid #ccc;
-      padding-bottom: 2px;
+      border-bottom: 1.5px solid #bbb;
+      padding-bottom: 3px;
       cursor: pointer;
       transition: border-color 0.15s ease;
     }
@@ -214,11 +211,13 @@
         padding: 12vh 20px 36px;
       }
 
-      .wordmark { margin-bottom: 24px; }
+      .h1 { font-size: 1.8rem; }
 
-      .tagline { font-size: 1.6rem; }
+      .h2 { font-size: 1.05rem; }
 
-      .sub { font-size: 0.85rem; margin-bottom: 32px; }
+      .h3 { font-size: 0.82rem; margin-bottom: 32px; }
+
+      .cta { font-size: 1.05rem; }
 
       .grid {
         grid-template-columns: repeat(3, 1fr);
@@ -237,9 +236,9 @@
 </head>
 <body>
   <div class="page">
-    <p class="wordmark">Rolling Ventures</p>
-    <h1 class="tagline">Backing culture<br>before it scales</h1>
-    <p class="sub">We make select investments throughout the year. To be considered, get in touch.</p>
+    <h1 class="h1">Rolling Ventures</h1>
+    <h2 class="h2">Backing culture before it scales</h2>
+    <p class="h3">We make select investments throughout the year. To be considered, get in touch.</p>
     <p class="label">Select Investments</p>
     <div class="grid">
       <a href="https://www.eventbrite.com/cc/refuge-nyc-upcoming-shows-4796860" target="_blank" rel="noopener"><img src="images/refuge.svg" alt="Refuge"></a>
