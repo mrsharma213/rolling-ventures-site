@@ -14,306 +14,231 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      height: 100%;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #fff;
       color: #111;
-      min-height: 100%;
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
     .page {
-      width: 100%;
-      max-width: 640px;
-      padding: 48px 32px;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
       text-align: center;
+      padding: 15vh 32px 48px;
     }
 
-    /* ---- Logo ---- */
+    /* Logo — just the RV monogram */
     .logo {
-      width: 56px;
-      height: auto;
-      margin-bottom: 40px;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 32px;
     }
 
-    /* ---- Headline / Tagline ---- */
+    /* Tagline = hero headline */
     .tagline {
-      font-size: 2.25rem;
+      font-size: 2rem;
       font-weight: 600;
       line-height: 1.2;
       letter-spacing: -0.025em;
+      max-width: 440px;
+      margin-bottom: 14px;
+    }
+
+    /* Supporting line */
+    .sub {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #777;
+      line-height: 1.55;
+      max-width: 340px;
+      margin-bottom: 44px;
+    }
+
+    /* Section label */
+    .label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #aaa;
       margin-bottom: 20px;
     }
 
-    /* ---- Supporting copy ---- */
-    .copy {
-      font-size: 0.95rem;
-      font-weight: 300;
-      line-height: 1.6;
-      color: #666;
-      max-width: 380px;
-      margin-bottom: 48px;
-    }
-
-    /* ---- Portfolio logos ---- */
-    .portfolio-label {
-      font-size: 0.65rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #999;
-      margin-bottom: 24px;
-    }
-
-    .logos {
+    /* Logo grid */
+    .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px 28px;
+      gap: 18px 24px;
       align-items: center;
       justify-items: center;
       width: 100%;
-      margin-bottom: 48px;
+      max-width: 520px;
+      margin-bottom: 44px;
     }
 
-    .logos a,
-    .logos span {
+    .grid a, .grid span {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 44px;
+      height: 42px;
     }
 
-    .logos a {
-      transition: opacity 0.2s ease;
-    }
+    .grid a { transition: opacity 0.15s ease; }
+    .grid a:hover { opacity: 0.5; }
 
-    .logos a:hover {
-      opacity: 0.55;
-    }
-
-    .logos img {
-      max-height: 36px;
-      max-width: 110px;
+    .grid img {
+      max-height: 34px;
+      max-width: 105px;
       width: auto;
       height: auto;
       object-fit: contain;
     }
 
-    /* ---- CTA ---- */
+    /* CTA */
     .cta {
       font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
       font-weight: 500;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: #111;
       text-decoration: none;
       border-bottom: 1.5px solid #ccc;
-      padding-bottom: 3px;
+      padding-bottom: 2px;
       cursor: pointer;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.15s ease;
     }
-
-    .cta:hover {
-      border-color: #111;
-    }
+    .cta:hover { border-color: #111; }
 
     /* ---- Modal ---- */
     .overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0,0,0,0.4);
       z-index: 100;
       align-items: center;
       justify-content: center;
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
     }
-
-    .overlay.open {
-      display: flex;
-    }
+    .overlay.open { display: flex; }
 
     .modal {
       background: #fff;
       width: 90%;
-      max-width: 420px;
-      padding: 36px 28px 32px;
+      max-width: 400px;
+      padding: 32px 24px 28px;
       border-radius: 4px;
       position: relative;
     }
 
-    .modal-close {
+    .close {
       position: absolute;
-      top: 14px;
-      right: 18px;
+      top: 12px;
+      right: 16px;
       background: none;
       border: none;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       cursor: pointer;
-      color: #999;
-      transition: color 0.15s ease;
+      color: #aaa;
       line-height: 1;
+      transition: color 0.15s;
     }
-
-    .modal-close:hover {
-      color: #111;
-    }
+    .close:hover { color: #111; }
 
     .modal h2 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
-    .field {
-      margin-bottom: 16px;
-      text-align: left;
-    }
+    .f { margin-bottom: 14px; text-align: left; }
 
-    .field label {
+    .f label {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #999;
-      margin-bottom: 6px;
+      color: #aaa;
+      margin-bottom: 5px;
     }
 
-    .field input,
-    .field textarea {
+    .f input, .f textarea {
       width: 100%;
       font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 400;
-      padding: 10px 12px;
+      font-size: 0.85rem;
+      padding: 9px 11px;
       border: 1px solid #ddd;
       border-radius: 3px;
-      background: #fff;
       color: #111;
       outline: none;
-      transition: border-color 0.15s ease;
+      transition: border-color 0.15s;
     }
+    .f input:focus, .f textarea:focus { border-color: #111; }
+    .f textarea { height: 80px; resize: vertical; }
 
-    .field input:focus,
-    .field textarea:focus {
-      border-color: #111;
-    }
-
-    .field textarea {
-      height: 90px;
-      resize: vertical;
-    }
-
-    .send-btn {
+    .btn {
       font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
       font-weight: 500;
-      letter-spacing: 0.04em;
       background: #111;
       color: #fff;
       border: none;
       border-radius: 3px;
-      padding: 12px 0;
+      padding: 11px 0;
       width: 100%;
       cursor: pointer;
-      margin-top: 8px;
-      transition: background 0.15s ease;
+      margin-top: 6px;
+      transition: background 0.15s;
     }
+    .btn:hover { background: #333; }
 
-    .send-btn:hover {
-      background: #333;
-    }
+    .ok { display: none; text-align: center; padding: 16px 0 4px; }
+    .ok h2 { margin-bottom: 6px; }
+    .ok p { font-size: 0.85rem; font-weight: 300; color: #777; }
 
-    .success {
-      display: none;
-      text-align: center;
-      padding: 24px 0 8px;
-    }
-
-    .success h2 {
-      margin-bottom: 8px;
-    }
-
-    .success p {
-      font-size: 0.88rem;
-      font-weight: 300;
-      color: #666;
-    }
-
-    /* ---- Responsive ---- */
+    /* ---- Mobile ---- */
     @media (max-width: 520px) {
       .page {
-        padding: 36px 24px;
+        padding: 12vh 20px 36px;
       }
 
-      .logo {
-        width: 44px;
+      .logo { width: 34px; height: 34px; margin-bottom: 24px; }
+
+      .tagline { font-size: 1.6rem; }
+
+      .sub { font-size: 0.85rem; margin-bottom: 32px; }
+
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px 16px;
         margin-bottom: 32px;
       }
 
-      .tagline {
-        font-size: 1.75rem;
-      }
+      .grid a, .grid span { height: 34px; }
+      .grid img { max-height: 26px; max-width: 80px; }
+    }
 
-      .copy {
-        font-size: 0.88rem;
-        margin-bottom: 36px;
-      }
-
-      .logos {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px 20px;
-        margin-bottom: 36px;
-      }
-
-      .logos a,
-      .logos span {
-        height: 36px;
-      }
-
-      .logos img {
-        max-height: 28px;
-        max-width: 85px;
-      }
-
-      .modal {
-        padding: 28px 22px 24px;
-      }
+    @media (max-height: 700px) {
+      .page { padding-top: 8vh; }
     }
   </style>
 </head>
 <body>
-
   <div class="page">
     <img src="images/rv-logo.svg" alt="Rolling Ventures" class="logo">
-
-    <h1 class="tagline">Backing culture before it scales</h1>
-
-    <p class="copy">We make select investments throughout the year. To be considered, get in touch.</p>
-
-    <p class="portfolio-label">Select Investments</p>
-
-    <div class="logos">
+    <h1 class="tagline">Backing culture<br>before it scales</h1>
+    <p class="sub">We make select investments throughout the year. To be considered, get in touch.</p>
+    <p class="label">Select Investments</p>
+    <div class="grid">
       <a href="https://www.eventbrite.com/cc/refuge-nyc-upcoming-shows-4796860" target="_blank" rel="noopener"><img src="images/refuge.svg" alt="Refuge"></a>
       <span><img src="images/mrbeast.png" alt="MrBeast"></span>
       <a href="https://mocama.com/" target="_blank" rel="noopener"><img src="images/mocama.png" alt="Mocama"></a>
@@ -326,71 +251,30 @@
       <a href="https://drinksprinter.com/" target="_blank" rel="noopener"><img src="images/sprinter.png" alt="Sprinter"></a>
       <span><img src="images/willies-remedy.jpg" alt="Willie's Remedy"></span>
     </div>
-
-    <a class="cta" onclick="document.getElementById('modal').classList.add('open')">Get in touch</a>
+    <a class="cta" onclick="document.getElementById('m').classList.add('open')">Get in touch</a>
   </div>
 
-  <!-- Contact Modal -->
-  <div class="overlay" id="modal">
+  <div class="overlay" id="m">
     <div class="modal">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-      <div id="formWrap">
+      <button class="close" onclick="cm()">&times;</button>
+      <div id="fw">
         <h2>Get in touch</h2>
-        <form id="rvForm" onsubmit="return send(event)">
-          <div class="field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="field">
-            <label for="msg">Message</label>
-            <textarea id="msg" name="message" required></textarea>
-          </div>
-          <button type="submit" class="send-btn">Send</button>
+        <form id="rf" onsubmit="return sf(event)">
+          <div class="f"><label for="n">Name</label><input type="text" id="n" name="name" required></div>
+          <div class="f"><label for="e">Email</label><input type="email" id="e" name="email" required></div>
+          <div class="f"><label for="mg">Message</label><textarea id="mg" name="message" required></textarea></div>
+          <button type="submit" class="btn">Send</button>
         </form>
       </div>
-      <div class="success" id="success">
-        <h2>Thank you</h2>
-        <p>We'll be in touch.</p>
-      </div>
+      <div class="ok" id="ok"><h2>Thank you</h2><p>We'll be in touch.</p></div>
     </div>
   </div>
 
   <script>
-    function closeModal() {
-      var m = document.getElementById('modal');
-      m.classList.remove('open');
-      // Reset after close
-      setTimeout(function() {
-        document.getElementById('formWrap').style.display = '';
-        document.getElementById('success').style.display = 'none';
-      }, 300);
-    }
-
-    document.getElementById('modal').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeModal();
-    });
-
-    function send(e) {
-      e.preventDefault();
-      var n = document.getElementById('name').value;
-      var em = document.getElementById('email').value;
-      var msg = document.getElementById('msg').value;
-      var subj = encodeURIComponent('Rolling Ventures — Inbound from ' + n);
-      var body = encodeURIComponent('Name: ' + n + '\nEmail: ' + em + '\n\n' + msg);
-      window.location.href = 'mailto:hello@rollingventures.com?subject=' + subj + '&body=' + body;
-      document.getElementById('formWrap').style.display = 'none';
-      document.getElementById('success').style.display = 'block';
-      document.getElementById('rvForm').reset();
-      return false;
-    }
+    function cm(){var o=document.getElementById('m');o.classList.remove('open');setTimeout(function(){document.getElementById('fw').style.display='';document.getElementById('ok').style.display='none'},300)}
+    document.getElementById('m').addEventListener('click',function(e){if(e.target===this)cm()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')cm()});
+    function sf(e){e.preventDefault();var n=document.getElementById('n').value,em=document.getElementById('e').value,mg=document.getElementById('mg').value;window.location.href='mailto:hello@rollingventures.com?subject='+encodeURIComponent('Rolling Ventures — Inbound from '+n)+'&body='+encodeURIComponent('Name: '+n+'\nEmail: '+em+'\n\n'+mg);document.getElementById('fw').style.display='none';document.getElementById('ok').style.display='block';document.getElementById('rf').reset();return false}
   </script>
 </body>
 </html>
