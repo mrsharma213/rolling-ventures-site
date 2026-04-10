@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rolling Ventures</title>
+  <meta name="description" content="Rolling Ventures — Backing culture before it scales.">
+  <meta property="og:title" content="Rolling Ventures">
+  <meta property="og:description" content="Backing culture before it scales.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/rv-logo.svg">
+  <link rel="icon" type="image/svg+xml" href="images/rv-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Playfair Display', serif;
+      background: #ffffff;
+      color: #121212;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 720px;
+      width: 100%;
+      padding: 20px 24px;
+    }
+
+    .logo {
+      width: 80px;
+      height: auto;
+      margin: 0 auto 24px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(18, 18, 18, 0.5);
+      margin-bottom: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    .description {
+      font-size: 0.95rem;
+      color: rgba(18, 18, 18, 0.7);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(18, 18, 18, 0.45);
+      margin-bottom: 20px;
+    }
+
+    .logos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px 20px;
+      align-items: center;
+      justify-items: center;
+      margin-bottom: 32px;
+    }
+
+    .logos-grid a,
+    .logos-grid span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      transition: opacity 0.2s ease;
+    }
+
+    .logos-grid a:hover {
+      opacity: 0.6;
+    }
+
+    .logos-grid img {
+      max-height: 40px;
+      max-width: 120px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(100%);
+    }
+
+    .cta-link {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #121212;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(18, 18, 18, 0.3);
+      padding-bottom: 2px;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .cta-link:hover {
+      border-color: #121212;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: #fff;
+      max-width: 440px;
+      width: 90%;
+      padding: 40px 32px;
+      position: relative;
+      text-align: left;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #121212;
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+    }
+
+    .modal h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(18, 18, 18, 0.6);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      padding: 10px 12px;
+      border: 1px solid rgba(18, 18, 18, 0.2);
+      background: #fff;
+      color: #121212;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #121212;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem;
+      background: #121212;
+      color: #fff;
+      border: none;
+      padding: 12px 32px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: opacity 0.2s ease;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.85;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .form-success p {
+      font-size: 1rem;
+      color: rgba(18, 18, 18, 0.7);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      html, body {
+        height: auto;
+        overflow: auto;
+      }
+
+      body {
+        min-height: 100dvh;
+        padding: 40px 0;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .logos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px 16px;
+      }
+
+      .logos-grid img {
+        max-height: 32px;
+        max-width: 90px;
+      }
+
+      .logos-grid a,
+      .logos-grid span {
+        height: 40px;
+      }
+
+      .modal {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="images/rv-logo.svg" alt="Rolling Ventures" class="logo">
+    <h1>Rolling<br>Ventures</h1>
+    <p class="tagline">Backing culture before it scales</p>
+    <p class="description">
+      We make select investments throughout the year.<br>
+      To be considered, please get in touch with us.
+    </p>
+    <p class="section-label">Select Investments</p>
+    <div class="logos-grid">
+      <a href="https://www.eventbrite.com/cc/refuge-nyc-upcoming-shows-4796860" target="_blank" rel="noopener"><img src="images/refuge.svg" alt="Refuge"></a>
+      <span><img src="images/mrbeast.png" alt="MrBeast"></span>
+      <a href="https://mocama.com/" target="_blank" rel="noopener"><img src="images/mocama.png" alt="Mocama"></a>
+      <span><img src="images/diamond-supply.png" alt="Diamond Supply"></span>
+      <a href="https://getswishables.com/" target="_blank" rel="noopener"><img src="images/swishables.png" alt="Swishables"></a>
+      <a href="https://www.midlinemiami.com/" target="_blank" rel="noopener"><img src="images/midline.png" alt="Midline"></a>
+      <a href="https://goodonyaorganic.com/" target="_blank" rel="noopener"><img src="images/goodonya.png" alt="GoodOnya"></a>
+      <span><img src="images/ketchy-shuby.png" alt="Ketchy Shuby"></span>
+      <a href="https://www.outersignal.com/" target="_blank" rel="noopener"><img src="images/outersignal.png" alt="OuterSignal"></a>
+      <a href="https://drinksprinter.com/" target="_blank" rel="noopener"><img src="images/sprinter.png" alt="Sprinter"></a>
+      <span><img src="images/willies-remedy.jpg" alt="Willie's Remedy"></span>
+    </div>
+    <a class="cta-link" onclick="document.getElementById('contactModal').classList.add('active')">Get in touch</a>
+  </div>
+
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('active')">&times;</button>
+      <div id="contactForm">
+        <h2>Get in touch</h2>
+        <form action="https://formspree.io/f/placeholder" method="POST" id="rvForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="_replyto" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send</button>
+        </form>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <h2>Thank you</h2>
+        <p>We'll be in touch shortly.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Close modal on overlay click
+    document.getElementById('contactModal').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('active');
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('contactModal').classList.remove('active');
+      }
+    });
+
+    // Form submission
+    document.getElementById('rvForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response) {
+        if (response.ok) {
+          document.getElementById('contactForm').style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+          form.reset();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
