@@ -105,16 +105,20 @@
     /* CTA — H2 sizing */
     .cta {
       font-family: 'Inter', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 400;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       color: #111;
       text-decoration: none;
-      border-bottom: 1.5px solid #bbb;
-      padding-bottom: 3px;
+      border: 1.5px solid #111;
+      padding: 12px 40px;
+      border-radius: 2px;
       cursor: pointer;
-      transition: border-color 0.15s ease;
+      margin-top: 12px;
+      transition: background 0.15s ease, color 0.15s ease;
+      display: inline-block;
     }
-    .cta:hover { border-color: #111; }
+    .cta:hover { background: #111; color: #fff; }
 
     /* ---- Modal ---- */
     .overlay {
