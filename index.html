@@ -12,7 +12,7 @@
   <link rel="icon" type="image/svg+xml" href="images/rv-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       margin: 0;
@@ -20,271 +20,300 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html {
       height: 100%;
-      overflow: hidden;
     }
 
     body {
-      font-family: 'Playfair Display', serif;
-      background: #ffffff;
-      color: #121212;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #111;
+      min-height: 100%;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    .container {
-      max-width: 720px;
+    .page {
       width: 100%;
-      padding: 20px 24px;
+      max-width: 640px;
+      padding: 48px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
+    /* ---- Logo ---- */
     .logo {
-      width: 80px;
+      width: 56px;
       height: auto;
-      margin: 0 auto 24px;
-      display: block;
+      margin-bottom: 40px;
     }
 
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-
+    /* ---- Headline / Tagline ---- */
     .tagline {
-      font-size: 0.85rem;
-      font-style: italic;
-      color: rgba(18, 18, 18, 0.5);
-      margin-bottom: 20px;
-      letter-spacing: 0.03em;
+      font-size: 1.75rem;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
     }
 
-    .description {
+    /* ---- Supporting copy ---- */
+    .copy {
       font-size: 0.95rem;
-      color: rgba(18, 18, 18, 0.7);
+      font-weight: 300;
       line-height: 1.6;
-      margin-bottom: 28px;
+      color: #666;
+      max-width: 380px;
+      margin-bottom: 48px;
     }
 
-    .section-label {
-      font-size: 0.7rem;
+    /* ---- Portfolio logos ---- */
+    .portfolio-label {
+      font-size: 0.65rem;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: rgba(18, 18, 18, 0.45);
-      margin-bottom: 20px;
+      letter-spacing: 0.18em;
+      color: #999;
+      margin-bottom: 24px;
     }
 
-    .logos-grid {
+    .logos {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px 20px;
+      gap: 20px 28px;
       align-items: center;
       justify-items: center;
-      margin-bottom: 32px;
+      width: 100%;
+      margin-bottom: 48px;
     }
 
-    .logos-grid a,
-    .logos-grid span {
+    .logos a,
+    .logos span {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 50px;
+      height: 44px;
+    }
+
+    .logos a {
       transition: opacity 0.2s ease;
     }
 
-    .logos-grid a:hover {
-      opacity: 0.6;
+    .logos a:hover {
+      opacity: 0.55;
     }
 
-    .logos-grid img {
-      max-height: 40px;
-      max-width: 120px;
+    .logos img {
+      max-height: 36px;
+      max-width: 110px;
       width: auto;
+      height: auto;
       object-fit: contain;
-
     }
 
-    .cta-link {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: #121212;
+    /* ---- CTA ---- */
+    .cta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: #111;
       text-decoration: none;
-      border-bottom: 1px solid rgba(18, 18, 18, 0.3);
-      padding-bottom: 2px;
+      border-bottom: 1.5px solid #ccc;
+      padding-bottom: 3px;
       cursor: pointer;
       transition: border-color 0.2s ease;
     }
 
-    .cta-link:hover {
-      border-color: #121212;
+    .cta:hover {
+      border-color: #111;
     }
 
-    /* Modal */
-    .modal-overlay {
+    /* ---- Modal ---- */
+    .overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
       z-index: 100;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(2px);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
     }
 
-    .modal-overlay.active {
+    .overlay.open {
       display: flex;
     }
 
     .modal {
       background: #fff;
-      max-width: 440px;
       width: 90%;
-      padding: 40px 32px;
+      max-width: 420px;
+      padding: 36px 28px 32px;
+      border-radius: 4px;
       position: relative;
-      text-align: left;
     }
 
     .modal-close {
       position: absolute;
-      top: 16px;
-      right: 20px;
+      top: 14px;
+      right: 18px;
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       cursor: pointer;
-      color: #121212;
-      font-family: 'Playfair Display', serif;
+      color: #999;
+      transition: color 0.15s ease;
       line-height: 1;
     }
 
+    .modal-close:hover {
+      color: #111;
+    }
+
     .modal h2 {
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-size: 1.1rem;
+      font-weight: 600;
       margin-bottom: 24px;
     }
 
-    .form-group {
+    .field {
       margin-bottom: 16px;
+      text-align: left;
     }
 
-    .form-group label {
+    .field label {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(18, 18, 18, 0.6);
+      letter-spacing: 0.08em;
+      color: #999;
       margin-bottom: 6px;
     }
 
-    .form-group input,
-    .form-group textarea {
+    .field input,
+    .field textarea {
       width: 100%;
-      font-family: 'Playfair Display', serif;
-      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 400;
       padding: 10px 12px;
-      border: 1px solid rgba(18, 18, 18, 0.2);
+      border: 1px solid #ddd;
+      border-radius: 3px;
       background: #fff;
-      color: #121212;
+      color: #111;
       outline: none;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.15s ease;
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: #121212;
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #111;
     }
 
-    .form-group textarea {
-      height: 100px;
+    .field textarea {
+      height: 90px;
       resize: vertical;
     }
 
-    .submit-btn {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.85rem;
-      background: #121212;
+    .send-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      background: #111;
       color: #fff;
       border: none;
-      padding: 12px 32px;
-      cursor: pointer;
-      letter-spacing: 0.05em;
-      transition: opacity 0.2s ease;
+      border-radius: 3px;
+      padding: 12px 0;
       width: 100%;
+      cursor: pointer;
       margin-top: 8px;
+      transition: background 0.15s ease;
     }
 
-    .submit-btn:hover {
-      opacity: 0.85;
+    .send-btn:hover {
+      background: #333;
     }
 
-    .form-success {
+    .success {
       display: none;
       text-align: center;
-      padding: 20px 0;
+      padding: 24px 0 8px;
     }
 
-    .form-success p {
-      font-size: 1rem;
-      color: rgba(18, 18, 18, 0.7);
+    .success h2 {
+      margin-bottom: 8px;
     }
 
-    /* Mobile */
-    @media (max-width: 600px) {
-      html, body {
-        height: auto;
-        overflow: auto;
+    .success p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: #666;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 520px) {
+      .page {
+        padding: 36px 24px;
       }
 
-      body {
-        min-height: 100dvh;
-        padding: 40px 0;
+      .logo {
+        width: 44px;
+        margin-bottom: 32px;
       }
 
-      h1 {
-        font-size: 1.8rem;
+      .tagline {
+        font-size: 1.4rem;
       }
 
-      .logos-grid {
+      .copy {
+        font-size: 0.88rem;
+        margin-bottom: 36px;
+      }
+
+      .logos {
         grid-template-columns: repeat(3, 1fr);
-        gap: 10px 16px;
+        gap: 16px 20px;
+        margin-bottom: 36px;
       }
 
-      .logos-grid img {
-        max-height: 32px;
-        max-width: 90px;
+      .logos a,
+      .logos span {
+        height: 36px;
       }
 
-      .logos-grid a,
-      .logos-grid span {
-        height: 40px;
+      .logos img {
+        max-height: 28px;
+        max-width: 85px;
       }
 
       .modal {
-        padding: 32px 24px;
+        padding: 28px 22px 24px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <div class="page">
     <img src="images/rv-logo.svg" alt="Rolling Ventures" class="logo">
-    <h1>Rolling<br>Ventures</h1>
-    <p class="tagline">Backing culture before it scales</p>
-    <p class="description">
-      We make select investments throughout the year.<br>
-      To be considered, please get in touch with us.
-    </p>
-    <p class="section-label">Select Investments</p>
-    <div class="logos-grid">
+
+    <h1 class="tagline">Backing culture before it scales</h1>
+
+    <p class="copy">We make select investments throughout the year. To be considered, get in touch.</p>
+
+    <p class="portfolio-label">Select Investments</p>
+
+    <div class="logos">
       <a href="https://www.eventbrite.com/cc/refuge-nyc-upcoming-shows-4796860" target="_blank" rel="noopener"><img src="images/refuge.svg" alt="Refuge"></a>
       <span><img src="images/mrbeast.png" alt="MrBeast"></span>
       <a href="https://mocama.com/" target="_blank" rel="noopener"><img src="images/mocama.png" alt="Mocama"></a>
@@ -297,62 +326,68 @@
       <a href="https://drinksprinter.com/" target="_blank" rel="noopener"><img src="images/sprinter.png" alt="Sprinter"></a>
       <span><img src="images/willies-remedy.jpg" alt="Willie's Remedy"></span>
     </div>
-    <a class="cta-link" onclick="document.getElementById('contactModal').classList.add('active')">Get in touch</a>
+
+    <a class="cta" onclick="document.getElementById('modal').classList.add('open')">Get in touch</a>
   </div>
 
   <!-- Contact Modal -->
-  <div class="modal-overlay" id="contactModal">
+  <div class="overlay" id="modal">
     <div class="modal">
-      <button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('active')">&times;</button>
-      <div id="contactForm">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div id="formWrap">
         <h2>Get in touch</h2>
-        <form id="rvForm" onsubmit="return submitForm(event)">
-          <div class="form-group">
+        <form id="rvForm" onsubmit="return send(event)">
+          <div class="field">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
           </div>
-          <div class="form-group">
+          <div class="field">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
           </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
+          <div class="field">
+            <label for="msg">Message</label>
+            <textarea id="msg" name="message" required></textarea>
           </div>
-          <button type="submit" class="submit-btn">Send</button>
+          <button type="submit" class="send-btn">Send</button>
         </form>
       </div>
-      <div class="form-success" id="formSuccess">
+      <div class="success" id="success">
         <h2>Thank you</h2>
-        <p>We'll be in touch shortly.</p>
+        <p>We'll be in touch.</p>
       </div>
     </div>
   </div>
 
   <script>
-    // Close modal on overlay click
-    document.getElementById('contactModal').addEventListener('click', function(e) {
-      if (e.target === this) this.classList.remove('active');
+    function closeModal() {
+      var m = document.getElementById('modal');
+      m.classList.remove('open');
+      // Reset after close
+      setTimeout(function() {
+        document.getElementById('formWrap').style.display = '';
+        document.getElementById('success').style.display = 'none';
+      }, 300);
+    }
+
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
     });
 
-    // Close on Escape
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        document.getElementById('contactModal').classList.remove('active');
-      }
+      if (e.key === 'Escape') closeModal();
     });
 
-    // Form submission via mailto
-    function submitForm(e) {
+    function send(e) {
       e.preventDefault();
-      var name = document.getElementById('name').value;
-      var email = document.getElementById('email').value;
-      var message = document.getElementById('message').value;
-      var subject = encodeURIComponent('Rolling Ventures — Inbound from ' + name);
-      var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
-      window.location.href = 'mailto:hello@rollingventures.com?subject=' + subject + '&body=' + body;
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
+      var n = document.getElementById('name').value;
+      var em = document.getElementById('email').value;
+      var msg = document.getElementById('msg').value;
+      var subj = encodeURIComponent('Rolling Ventures — Inbound from ' + n);
+      var body = encodeURIComponent('Name: ' + n + '\nEmail: ' + em + '\n\n' + msg);
+      window.location.href = 'mailto:hello@rollingventures.com?subject=' + subj + '&body=' + body;
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
       document.getElementById('rvForm').reset();
       return false;
     }
