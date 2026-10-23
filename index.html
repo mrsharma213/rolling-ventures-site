@@ -104,7 +104,7 @@
       align-items:center;
       justify-content:center;
       width:140px;
-      height:52px;
+      height:64px;
     }
     .logos a{transition:opacity 0.15s}
     .logos a:hover{opacity:0.45}
@@ -114,6 +114,15 @@
       width:auto;height:auto;
       object-fit:contain;
     }
+    /* Optical sizing: wide wordmarks and compact symbols need different bounds. */
+    .logos img[alt="Refuge"]{width:110px;max-width:110px}
+    .logos img[alt="MrBeast"]{width:96px;max-height:56px}
+    .logos img[alt="Mocama"]{width:100px;max-height:57px}
+    .logos img[alt="Diamond Supply"]{width:88px;max-height:57px}
+    .logos img[alt="Midline"]{width:96px;max-height:52px}
+    .logos img[alt="Willie's Remedy"]{max-width:110px}
+    .logos img[alt="bump.fm"]{max-height:33px}
+    .logos img[alt="Wilder Miami"]{width:140px;max-width:140px}
     .logos img.volantis-logo{filter:invert(1)}
     .logo-placeholder{
       border:1px solid var(--rule);
@@ -183,8 +192,13 @@
       .hero h2{font-size:1.02rem}
       .hero p{font-size:0.82rem}
       .hero{margin-bottom:40px}
-      .logos a,.logos span{width:100px;height:40px}
-      .logos img{max-height:28px;max-width:90px}
+      .logos a,.logos span{width:120px;height:56px}
+      .logos img{max-height:34px;max-width:110px}
+      .logos img[alt="MrBeast"]{width:84px;max-height:49px}
+      .logos img[alt="Mocama"]{width:88px;max-height:50px}
+      .logos img[alt="Diamond Supply"]{width:78px;max-height:50px}
+      .logos img[alt="Midline"]{width:86px;max-height:47px}
+      .logos img[alt="Wilder Miami"]{width:120px;max-width:120px}
       .logos{gap:16px 20px}
       .portfolio{margin-bottom:40px}
       .cta-btn{font-size:0.92rem;padding:12px 36px}
@@ -208,11 +222,11 @@
       <p class="section-label">Select Investments</p>
       <div class="logos">
         <a href="https://www.eventbrite.com/cc/refuge-nyc-upcoming-shows-4796860" target="_blank" rel="noopener"><img src="images/refuge.svg" alt="Refuge"></a>
-        <span><img src="images/mrbeast.png" alt="MrBeast"></span>
-        <a href="https://mocama.com/" target="_blank" rel="noopener"><img src="images/mocama.png" alt="Mocama"></a>
-        <span><img src="images/diamond-supply.png" alt="Diamond Supply"></span>
+        <span><img src="images/mrbeast-trim.png" alt="MrBeast"></span>
+        <a href="https://mocama.com/" target="_blank" rel="noopener"><img src="images/mocama-trim.png" alt="Mocama"></a>
+        <span><img src="images/diamond-supply-trim.png" alt="Diamond Supply"></span>
         <a href="https://getswishables.com/" target="_blank" rel="noopener"><img src="images/swishables.png" alt="Swishables"></a>
-        <a href="https://www.midlinemiami.com/" target="_blank" rel="noopener"><img src="images/midline.png" alt="Midline"></a>
+        <a href="https://www.midlinemiami.com/" target="_blank" rel="noopener"><img src="images/midline-trim.png" alt="Midline"></a>
         <a href="https://goodonyaorganic.com/" target="_blank" rel="noopener"><img src="images/goodonya.png" alt="GoodOnya"></a>
         <span><img src="images/ketchy-shuby.png" alt="Ketchy Shuby"></span>
         <a href="https://www.outersignal.com/" target="_blank" rel="noopener"><img src="images/outersignal.png" alt="OuterSignal"></a>
@@ -223,7 +237,7 @@
         <a href="https://www.volantissemi.ai/" target="_blank" rel="noopener"><img class="volantis-logo" src="images/volantis.webp" alt="Volantis"></a>
         <a href="https://popwtr.com/" target="_blank" rel="noopener"><img src="images/popwtr.png" alt="POPWTR"></a>
         <a href="https://bump.fm/" target="_blank" rel="noopener"><img src="images/bump-fm.svg" alt="bump.fm" style="filter:brightness(0)"></a>
-        <a href="https://wildermiami.com/" target="_blank" rel="noopener"><img src="images/wilder-miami.png" alt="Wilder Miami"></a>
+        <a href="https://wildermiami.com/" target="_blank" rel="noopener"><img src="images/wilder-miami-trim.png" alt="Wilder Miami"></a>
         <span class="logo-placeholder" aria-label="Stealth Food Company">Stealth Food Company</span>
       </div>
     </section>
